@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>    
+    <link rel="stylesheet" href="jquery.bxslider.css">
+    <link rel="stylesheet" href="colorbox.css">
+    <link rel="stylesheet" type="text/css" href="fullpage.css" />
+    <link rel="stylesheet" type="text/css" href="index.css" />
+    <script type="text/javascript" src="jquery.colorbox.js"></script>
+    <script type="text/javascript" src="fullpage.js"></script>
+    <script src="jquery.bxslider.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#fullpage').fullpage({
+                //options here
+                autoScrolling:true,
+                scrollHorizontally: true,
+                anchors: ['1Page', '2Page', '3Page','4Page','5Page'],
+                menu: '#myMenu',
+                navigation: true,
+                navigationPosition: 'right'
+            });   
+            
+            $('.close3').click(function(){
+                $('.title').hide();
+            });
+
+            
+            $('.group1').colorbox({width:'95%' ,height:'95%',rel:'group1'});
+            $('.group2').colorbox({rel:'group2',iframe:true,innerWidth:1280, innerHeight:720});
+
+            $('.bxslider').bxSlider({
+                mode: 'horizontal',
+                auto:true
+            });
+
+
+
+        });
+    </script>
+</head>
+<body>
+    <ul id="myMenu">
+        <li data-menuanchor="1Page"><a href="#1Page">1 section</a></li>
+        <li data-menuanchor="2Page"><a href="#2Page">2 section</a></li>
+        <li data-menuanchor="3Page"><a href="#3Page">3 section</a></li>
+        <li data-menuanchor="4Page"><a href="#4Page">4 section</a></li>
+        <li data-menuanchor="5Page"><a href="#5Page">5 section</a></li>
+    </ul>
+
+    <div id="fullpage">
+        <div class="section">Some section1
+
+            <br>Lorem, ipsum dolor.
+        </div>
+        <div class="section">Some section2</div>
+        <div class="section">
+            <video src="flowers.mp4" loop muted controls></video>
+            <div class="title">
+                <h2>Lorem, ipsum dolor.</h2>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Suscipit ut a incidunt sapiente illum sint in! Voluptate quibusdam repellendus delectus.</p>
+                <span><a href="#" class="close3">close</a></span>
+            </div>
+        </div>
+        <div class="section">
+            <div class="gallery">
+                <h2>포트폴리오</h2>
+               <ul>
+                <li><a href="bg1.jpg" class="group1"><img src="bg1.jpg" alt="bg1"></a></li>
+                <li><a href="bg2.jpg" class="group1"><img src="bg2.jpg" alt="bg1"></a></li>
+                <li><a href="flowers.mp4" class="group2"><img src="bg3.jpg" alt="bg1"></a></li>
+                <li><a href="https://www.youtube.com/embed/s4Ow55AbdCg" class="group2"><img src="bg1.jpg" alt="bg1"></a></li>
+                <li><a href="#"><img src="bg2.jpg" alt="bg1"></a></li>
+                <li><a href="#"><img src="bg3.jpg" alt="bg1"></a></li>
+                <li><a href="#"><img src="bg1.jpg" alt="bg1"></a></li>
+                <li><a href="#"><img src="bg2.jpg" alt="bg1"></a></li>
+               </ul>               
+            </div>
+        </div>
+        <div class="section">
+            <div class="slide"> </div>
+            <div class="slide">  </div>
+        </div>
+        <div class="section">
+            <div class="wrap">
+                <div class="bxslider">
+                    <div><img src="bg1.jpg" title="Coffee 1" /></div>
+                    <div><img src="bg2.jpg" title="Coffee 2" /></div>
+                    <div><img src="bg3.jpg" title="Coffee 3" /></div>
+                  </div>
+            </div>
+        </div>
+
+
+    </div>
+
+</body>
+</html>
+
