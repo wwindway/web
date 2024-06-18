@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="fullpage.css" />
+    <script type="text/javascript" src="fullpage.js"></script>
+    <style>
+       #fullpage  .section:nth-child(1){
+            background: url(./main1.jpg) center/cover;
+        }
+
+        #fullpage  .section:nth-child(2){
+            background: url(./main2.jpg) center/cover;
+        }
+
+        #fullpage  .section:nth-child(4){
+            background: url(./main4.jpg) center/cover;
+        }
+        .section:nth-child(3){
+            position: relative;
+        }
+        .section:nth-child(3) iframe{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .section:nth-child(3) video{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="fullpage">
+        <div class="section"></div>
+        <div class="section"></div>
+        <div class="section">
+            <!-- <iframe src="https://www.youtube.com/embed/KGtDf4HSy2I" title="CF 광고 아이유 IU 소니 Sony WF-SP700N 아이유, 음악과 함께 사라지다 편 70s 2018" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> -->
+             <video src="텍스트.mp4" controls></video>
+        </div>
+        <div class="section"></div>        
+    </div>
+    <script>
+        new fullpage('#fullpage', {
+            navigation: true,
+            autoScrolling:true,
+            scrollHorizontally: true
+        });
+    </script>
+</body>
+</html>
