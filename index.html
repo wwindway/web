@@ -13,29 +13,115 @@
         #fullpage  .section:nth-child(2){
             background: url(./bg2.jpg) center/cover;
         } 
-        #fullpage  .section:nth-child(3){
-            background: url(./bg1.jpg) center/cover;
-        } 
-        #fullpage  .section:nth-child(4){
-            background: url(./bg2.jpg) center/cover;
-        } 
-      
-      
+
+      #fullpage .section:nth-child(3) .wrap{         
+         width: 1440px;
+         margin:150px auto;
+      }
+      #fullpage .section:nth-child(3) h1{
+            width: 100%;
+      }
+
+      #fullpage .section:nth-child(3) ul{
+            width: 100%;
+           display: flex;
+           flex-wrap: wrap;
+           justify-content: space-between;            
+           align-content: flex-start;          
+      }
+      #fullpage .section:nth-child(3) li{
+        
+        width: 350px;
+        height: 280px;
+        background-color: red;
+        margin-top:4px;
+        margin-right:4px
+      }
+      #fullpage .section:nth-child(3) li{
+        background: url(./sns.jpg);
+      }
     </style>
 </head>
 <body>
     <div id="fullpage">
         <div class="section"></div>
         <div class="section"></div>
-        <div class="section"></div>
-        <div class="section"></div>
+        <div class="section">
+            <div class="wrap">
+                <h1>포트폴리오</h1>
+                <ul>
+                    <a href="#" id="popup1"><li></li></a>
+                    <a href="#" id="popup2"><li></li></a>
+                    <a href="#" id="popup3"><li></li></a>
+                    <a href="#" ><li></li></a>
+                    <a href="#"><li></li></a>
+                    <a href="#"><li></li></a>
+                    <a href="#"><li></li></a>
+                    <a href="#"><li></li></a>                    
+                </ul>
+            </div>
+        </div>
+    </div>
+    <style>
+        .gallery{
+            position: fixed;
+            z-index: 10;
+            width: 90%;
+            height: 90%;
+            left:50%;
+            top:50%;
+            transform: translate(-50%,-50%);            
+            border:1px solid orange;
+            display:none;
+            background-color: white;
+            overflow: scroll;
+        }
+        .gallery #popgallery{
+            width: 100%;
        
+        }
+        .gallery #close{
+            position: absolute;
+            right:8px;
+            bottom:8px;
+            z-index: 10;
+            width: 50px;
+            height: 40px;
+        }
+    </style>
+    <div class="gallery">
+        <img src="" alt="오픈이미지" id="popgallery">
+        <button id="close">닫기</button>
     </div>
     <script>
         new fullpage('#fullpage', {
             navigation: true,
             autoScrolling:true,
             scrollHorizontally: true
+        });
+
+
+        document.querySelector('#popup1').addEventListener('click',function(){
+            window.open('open.html','popup','width=600,height=400,scrollbars=yes');
+        });
+
+        document.querySelector('#popup2').addEventListener('click',function(){
+            document.querySelector('.gallery').style.display='block';
+            document.querySelector('#popgallery').setAttribute('src','./sns.jpg')
+        });
+
+        document.querySelector('#popup3').addEventListener('click',function(){
+            document.querySelector('.gallery').style.display='block';
+            document.querySelector('#popgallery').setAttribute('src','./popup.jpg')
+        });
+
+
+
+
+
+
+        document.querySelector('#close').addEventListener('click',function(){
+            document.querySelector('.gallery').style.display='none';          
         });
     </script>
 </body>
