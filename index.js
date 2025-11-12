@@ -29,5 +29,3 @@ function close() {
     d.classList.remove("ani");
   });
 }
-
-function aa() {}
