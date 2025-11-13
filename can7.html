@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <canvas width="600" height="400" style="border: 1px solid red"></canvas>
+    <script>
+      let ctx = document.querySelector("canvas").getContext("2d");
+
+      ctx.beginPath();
+      ctx.fillStyle = "skyblue";
+      // ctx.roundRect(x, y, width, height, radii)
+      ctx.roundRect(90, 70, 120, 30, 3);
+      ctx.stroke();
+      ctx.fill();
+
+      ctx.fillStyle = "orange";
+      ctx.textBaseline = "bottom";
+      ctx.font = "32px Nanum Pen Script";
+      ctx.fillText("안녕하세요", 100, 100);
+
+      ctx.font = "12px 돋음";
+      ctx.fillStyle = "green";
+      ctx.fillText("캔버스", 100, 120);
+    </script>
+  </body>
+</html>
