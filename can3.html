@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <canvas width="600" height="400" style="border: 1px solid red"></canvas>
+    <script>
+      let ctx = document.querySelector("canvas").getContext("2d");
+      ctx.lineWidth = 1;
+      ctx.strokeStyle = "pink";
+      ctx.strokeRect(0, 20, 600, 30);
+
+      ctx.beginPath();
+      ctx.lineWidth = 4;
+      ctx.strokeStyle = "orange";
+      ctx.moveTo(30, 70);
+      ctx.lineTo(60, 120);
+      ctx.moveTo(60, 70);
+      ctx.lineTo(30, 120);
+      ctx.stroke();
+    </script>
+  </body>
+</html>
