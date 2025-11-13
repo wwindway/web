@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <canvas width="600" height="400" style="border: 1px solid red"></canvas>
+    <script>
+      let ctx = document.querySelector("canvas").getContext("2d");
+
+      let arrcolor = [
+        "red",
+        "green",
+        "blue",
+        "orange",
+        "purple",
+        "pink",
+        "cyan",
+        "banana",
+      ];
+      for (let i = 0; i < 8; i++) {
+        ctx.beginPath();
+        ctx.strokeStyle = arrcolor[i];
+        ctx.arc(100, 100, 5 * i + 5, 0, Math.PI * 2);
+        ctx.stroke();
+      }
+
+      // ctx.beginPath();
+      // ctx.strokeStyle = "green";
+      // ctx.arc(100, 100, 8, 0, Math.PI * 2);
+      // ctx.stroke();
+
+      // ctx.beginPath();
+      // ctx.strokeStyle = "orange";
+      // ctx.arc(100, 100, 11, 0, Math.PI * 2);
+      // ctx.stroke();
+
+      // ctx.strokeStyle = "skyblue";
+      // ctx.lineWidth = 4;
+      // ctx.arc(50, 50, 20, 0, Math.PI / 2, false);
+      // ctx.stroke();
+
+      // ctx.beginPath();
+      // ctx.arc(100, 50, 20, 0, Math.PI, true);
+      // ctx.stroke();
+      // ctx.beginPath();
+      // ctx.arc(150, 50, 20, 0, Math.PI * 2, false);
+      // ctx.stroke();
+      // ctx.fillStyle = "red";
+      // ctx.fill();
+    </script>
+  </body>
+</html>
