@@ -114,4 +114,5 @@ main .list{
 }
 .chart{
   margin-left: 24px;
+  display: none;
 }
