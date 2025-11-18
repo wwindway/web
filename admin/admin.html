@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>국영수프로그램</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <script src="script/jquery-3.7.1.min.js"></script>
+    <script src="script/kor.js" defer></script>
+  </head>
+  <body>
+    <div class="wrap">
+      <aside>
+        <h3>관리자페이지</h3>
+        <ul>
+          <li><a href="dashboar.html">대시보드</a></li>
+          <li><a href="admin.html">국영수프로그램 </a></li>
+          <li><a href="#">회원관리</a></li>
+        </ul>
+      </aside>
+      <main>
+        <h2>국영수 입력관리 프로그램</h2>
+        <div class="input">
+          <ul>
+            <li>
+              <p>이름</p>
+              <p><input type="text" id="username" /></p>
+            </li>
+            <li>
+              <p>국어</p>
+              <p><input type="text" id="kor" /></p>
+            </li>
+            <li>
+              <p>영어</p>
+              <p><input type="text" id="eng" /></p>
+            </li>
+            <li>
+              <p>수학</p>
+              <p><input type="text" id="math" /></p>
+            </li>
+          </ul>
+          <button id="btn">저장</button>
+        </div>
+        <div class="list">
+          <ul>
+            <li>
+              <p>순번</p>
+              <p>이름</p>
+              <p>국어</p>
+              <p>영어</p>
+              <p>수학</p>
+              <p>총점</p>
+              <p>평균</p>
+            </li>
+          </ul>
+        </div>
+        <button class="chartlist">차트생성</button>
+        <div class="chart">
+          <canvas
+            width="800"
+            height="400"
+            style="border: 1px solid red"
+          ></canvas>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

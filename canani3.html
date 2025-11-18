@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <canvas width="600" height="300" style="border: 1px solid red"></canvas>
+    <div>
+      공추가<select name="" id="ballnum">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option></select
+      ><button id="btn">실행</button>
+    </div>
+    <script>
+      let ctx = document.querySelector("canvas").getContext("2d");
+      class Ball {
+        constructor(x, y, radius, color) {
+          this.x = x;
+          this.y = y;
+          this.radius = radius;
+          this.color = color;
+          this.xSpeed = 3;
+          this.ySpeed = 3;
+          this.getRandomSpeed();
+        }
+        draw() {
+          ctx.fillStyle = this.color;
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
+          ctx.fill();
+        }
+        collsion() {
+          if (this.x < 0 || this.x > 600) {
+            this.xSpeed = -this.xSpeed;
+          }
+          if (this.y < 0 || this.y > 300) {
+            this.ySpeed = -this.ySpeed;
+          }
+        }
+        update() {
+          this.x += this.xSpeed;
+          this.y += this.ySpeed;
+        }
+        getRandomSpeed() {
+          let speed1 = Math.floor(Math.random() * 10) - 5;
+          let speed2 = Math.floor(Math.random() * 10) - 5;
+
+          if (speed1 == 0) {
+            speed1 = -speed1;
+          }
+          if (speed2 == 0) {
+            speed2 = -speed2;
+          }
+
+          this.xSpeed = speed1;
+          this.ySpeed = speed2;
+        }
+      }
+
+      let ballRun = [];
+      let colors = ["red", "orange", "yellow", "green", "blue", "purple"];
+
+      document.querySelector("#btn").addEventListener("click", () => {
+        let ballnum = Number(document.querySelector("#ballnum").value);
+        for (let i = 0; i < ballnum; i++) {
+          let rnd1 = Math.floor(Math.random() * 600);
+          let rnd2 = Math.floor(Math.random() * 300);
+
+          ballRun.push(
+            new Ball(
+              rnd1,
+              rnd2,
+              5,
+              colors[Math.floor(Math.random() * colors.length)]
+            )
+          );
+        }
+
+        let play = setInterval(() => {
+          ctx.clearRect(0, 0, 600, 300);
+          for (let i = 0; i < ballRun.length; i++) {
+            ballRun[i].update();
+            ballRun[i].draw();
+            ballRun[i].collsion();
+          }
+        }, 30);
+      });
+    </script>
+  </body>
+</html>

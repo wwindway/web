@@ -1,0 +1,117 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+ul{
+  list-style: none;
+}
+a:link ,a:visited{
+  text-decoration: none;
+  color:#333;
+}
+.wrap{
+  width: 100%;
+  display: flex;
+}
+.wrap aside{
+  width: 200px;
+  height: 100vh;
+  background: #111828;
+}
+aside h3{
+  text-align: center;
+  margin: 12px;
+  color:white;
+  font-size:24px
+}
+aside ul{
+  margin-top: 32px;
+}
+aside a:link , aside a:visited {
+  line-height: 40px;
+  text-align: center;
+  color:white;
+}
+.wrap main{
+  width: calc(100% - 200px);  
+}
+main h2{
+  margin:24px;
+}
+main .input{
+  width: 800px;
+  box-shadow: 0 0 5.8px rgba(0,0,0,0.8);
+  margin-left:24px;
+  border:1px solid transparent;
+   text-align: center ;
+}
+.input ul{
+  width: 90%;
+  margin:32px auto;
+
+}
+.input li{
+  width: 100%;
+  display: flex;
+  line-height: 40px;
+  margin: 16px;;
+ 
+}
+.input p:nth-child(1){
+  width: 10%;
+}
+.input p:nth-child(2){
+  width: 90%;
+}
+.input input{
+  width: 80%;
+  height: 28px;
+}
+.input #btn{
+  width: 120px;
+  height: 32px;
+  border:0;
+  cursor: pointer;
+  outline: 0;
+  margin-bottom: 28px;
+  background-color: #004FFC;
+  color:white;
+}
+main .chartlist{
+  width: 120px;
+  height: 32px;
+  border:0;
+  cursor: pointer;
+  outline: 0;
+  margin-top: 20px;
+  margin-left: 370px;  
+  margin-bottom: 28px;
+  background-color: #004FFC;
+  color:white;
+}
+
+main .list{
+  width: 800px;
+  box-shadow: 0 0 5.8px rgba(0,0,0,05);
+  margin-left:24px;
+  border:1px solid transparent;
+  text-align: center ;
+  margin-top: 20px;
+}
+.list ul{
+  width: 100%;
+}
+.list li{
+  width: 100%;
+  display: flex;  
+  border-bottom:1px solid gray;
+}
+.list p{
+  width: 14.2%;
+  line-height: 40px;
+  text-align: center;
+}
+.chart{
+  margin-left: 24px;
+}
