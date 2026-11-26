@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>회원 관리</title>
+    <script src="./member.js" defer></script>
+    <script src="./menu.js" defer></script>
+    <link rel="stylesheet" href="./member.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="aside"></div>
+      <main class="page">
+        
+      <div class="container">
+        <!-- Top Action Bar -->
+         <select name="" id="searchtier">
+            <option value="VIP">VIP</option>
+            <option value="Gold">Gold</option>
+            <option value="Silver">Silver</option>
+            <option value="Famliy">Famliy</option>
+         </select>
+         <button class="searchbtn">검색</button>
+        <div class="top-actions">
+          <button type="button" id="open-modal-btn" class="btn-primary hidden">
+            등록
+          </button>
+          <button type="button" id="save-btn" class="btn-primary">
+            저장
+          </button>
+        </div>
+
+        <!-- Member Table -->
+        <div class="table-scroll">
+          <div class="table-inner">
+            <div class="divider-line">
+              <img src="/assets/7155a.svg" alt="" />
+            </div>
+
+            <div class="table-row table-header">
+              <span>순번</span>
+              <span>이름</span>
+              <span>주소</span>
+              <span>이메일</span>
+              <span>나이</span>
+              <span>회원등급</span>
+              <span class="align-right">접속상태</span>
+            </div>
+
+            <div class="divider-line">
+              <img src="/assets/7155a.svg" alt="" />
+            </div>
+
+            <div id="member-list"></div>
+          </div>
+        </div>
+
+        <!-- Registration Modal Card -->
+        <form id="register-form" class="modal-card" novalidate>
+          <div class="form-fields">
+            <div class="form-row">
+              <label for="member-name" class="field-label w-short">이름</label>
+              <input
+                id="member-name"
+                type="text"
+                class="text-input max-w-778"
+              />
+            </div>
+
+            <div class="form-row">
+              <label for="member-address" class="field-label w-short">주소</label>
+              <input
+                id="member-address"
+                type="text"
+                class="text-input max-w-778"
+              />
+            </div>
+
+            <div class="form-row gap-email">
+              <label for="member-email" class="field-label w-email">이메일</label>
+              <input
+                id="member-email"
+                type="email"
+                class="text-input max-w-776"
+              />
+            </div>
+
+            <div class="form-row">
+              <label for="member-age" class="field-label w-short">나이</label>
+              <input
+                id="member-age"
+                type="number"
+                min="1"
+                max="150"
+                class="text-input max-w-771"
+              />
+            </div>
+
+            <div class="form-row align-top gap-tier">
+              <span class="field-label">회원등급</span>
+              <div
+                id="tier-group"
+                class="tier-group"
+                role="radiogroup"
+                aria-label="회원등급"
+              >
+              <select class="tiger">
+                <option value="VIP">VIP</option>
+                <option value="Gold">Gold</option>
+                <option value="Silver">Silver</option>
+                <option value="Famliy">Famliy</option>
+              </select>                
+              </div>
+            </div>
+
+            <div class="form-row align-end gap-status">
+              <label for="member-status" class="field-label">접속상태</label>
+              <select id="member-status" class="status-select">
+                <option value="온라인">온라인</option>
+                <option value="오프라인">오프라인</option>
+                <option value="자리비움">자리비움</option>
+              </select>
+            </div>
+          </div>
+
+          <p id="form-error" class="form-error hidden" role="alert"></p>
+
+          <div class="modal-actions">
+            <button type="submit" class="btn-primary">등록</button>
+
+            <button type="button" id="close-modal-btn" class="btn-primary">
+              닫기
+            </button>
+            <button type="button" id="del-modal-btn" class="btn-primary">
+              삭제
+            </button>
+
+          </div>
+        </form>
+      </div>
+    </main>
+
+    </div>
+    
+    <div id="toast" class="toast hidden" role="status"></div>
+
+    
+  </body>
+</html>

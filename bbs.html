@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>게시판</title>
+  <style>
+    @font-face {
+      font-family: 'Inter:Regular';
+      src: url('https://static.figma.com/font/Inter_1') format('woff2');
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: 'Inter:Bold';
+      src: url('https://static.figma.com/font/Inter_1') format('woff2');
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: 'Noto Sans KR:Regular';
+      src: url('https://static.figma.com/font/NotoSansKR-VF_2') format('woff2');
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: 'Noto Sans KR:Bold';
+      src: url('https://static.figma.com/font/NotoSansKR-VF_2') format('woff2');
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      width: 100%;
+      background-color: #ffffff;
+      color: #000000;
+      font-family: 'Inter:Regular', 'Noto Sans KR:Regular', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button,
+    input,
+    textarea {
+      font: inherit;
+      color: inherit;
+    }
+
+    .wrap {
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+    }
+
+    .aside {
+      width: 223px;
+      flex-shrink: 0;
+      background-color: #213966;
+      color: #ffffff;
+      text-align: center;
+    }
+
+    .aside ul {
+      display: flex;
+      flex-direction: column;
+      list-style: none;
+    }
+
+    .aside a {
+      display: block;
+      padding: 16px 24px;
+      color: #ffffff;
+      text-decoration: none;
+    }
+
+    .page-container {
+      flex: 1;
+      min-width: 0;
+      width: 100%;
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 36px 16px 64px 28px;
+    }
+
+    /* Top Action Bar */
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .status-message {
+      font-family: 'Inter:Regular', 'Noto Sans KR:Regular', sans-serif;
+      font-size: 14px;
+      color: #0f62fe;
+    }
+
+    .btn-primary {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 69.081px;
+      height: 33.503px;
+      border: none;
+      background-color: #0f62fe;
+      color: #ffffff;
+      font-family: 'Inter:Bold', 'Noto Sans KR:Bold', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: normal;
+      cursor: pointer;
+      transition: background-color 0.15s ease;
+    }
+
+    .btn-primary:hover {
+      background-color: #0353e9;
+    }
+
+    .btn-primary:active {
+      background-color: #0043ce;
+    }
+
+    .btn-danger {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 69.081px;
+      height: 33.503px;
+      border: none;
+      background-color: #da1e28;
+      color: #ffffff;
+      font-family: 'Inter:Bold', 'Noto Sans KR:Bold', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: normal;
+      cursor: pointer;
+      transition: background-color 0.15s ease;
+    }
+
+    .btn-danger:hover {
+      background-color: #ba1b23;
+    }
+
+    /* Divider Line */
+    .divider-line {
+      width: 100%;
+      height: 1px;
+      background-color: #000000;
+    }
+
+    /* Board Table */
+    .board-table {
+      width: 100%;
+    }
+
+    .table-header {
+      display: grid;
+      grid-template-columns: 56px minmax(0, 1fr) 104px 64px;
+      align-items: center;
+      gap: 16px;
+      padding: 12px 8px;
+      font-family: 'Inter:Regular', 'Noto Sans KR:Regular', sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: normal;
+      color: #000000;
+    }
+
+    .table-header-index {
+      text-align: left;
+    }
+
+    .table-header-title {
+      text-align: center;
+    }
+
+    .table-header-date {
+      text-align: center;
+    }
+
+    .table-header-views {
+      text-align: right;
+    }
+
+    .table-row-btn {
+      display: grid;
+      grid-template-columns: 56px minmax(0, 1fr) 104px 64px;
+      align-items: center;
+      gap: 16px;
+      width: 100%;
+      padding: 20px 8px;
+      border: none;
+      background-color: transparent;
+      text-align: left;
+      font-size: 16px;
+      line-height: normal;
+      color: #000000;
+      cursor: pointer;
+      transition: background-color 0.15s ease;
+    }
+
+    .table-row-btn:hover {
+      background-color: #fafafa;
+    }
+
+    .table-row-btn.is-selected {
+      background-color: #edf5ff;
+    }
+
+    .row-index {
+      padding-left: 8px;
+      font-family: 'Inter:Regular', 'Noto Sans KR:Regular', sans-serif;
+      font-weight: 400;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .row-title {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-family: 'Inter:Bold', 'Noto Sans KR:Bold', sans-serif;
+      font-weight: 700;
+    }
+
+    .row-date {
+      font-family: 'Inter:Bold', 'Noto Sans KR:Bold', sans-serif;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .row-views {
+      text-align: right;
+      font-family: 'Inter:Bold', 'Noto Sans KR:Bold', sans-serif;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .empty-state {
+      padding: 32px 0;
+      text-align: center;
+      font-family: 'Inter:Regular', 'Noto Sans KR:Regular', sans-serif;
+      font-size: 15px;
+      color: #737373;
+    }
+
+    /* Card Modal (Registration & Detail) */
+    .card-panel {
+      display:none;
+      width: 100%;
+      max-width: 976px;
+      margin: 45px auto 0;
+      padding: 40px 24px;
+      background-color: #ffffff;
+      box-shadow: 8px 14px 17.2px 0px rgba(0, 0, 0, 0.25);
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .form-fields {
+      display: flex;
+      flex-direction: column;
+      gap: 44px;
+    }
+
+    .field-row {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .field-label {
+      flex-shrink: 0;
+      width: 46px;
+      font-family: 'Inter:Bold', 'Noto Sans KR:Bold', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: normal;
+      color: #000000;
+    }
+
+    .field-label-date {
+      width: 53px;
+    }
+
+    .field-input-wrap {
+      flex: 1;
+    }
+
+    .text-input {
+      width: 100%;
+      height: 36.969px;
+      padding: 0 12px;
+      border: none;
+      background-color: #d9d9d9;
+      font-family: 'Inter:Regular', 'Noto Sans KR:Regular', sans-serif;
+      font-size: 15px;
+      color: #000000;
+    }
+
+    .text-input::placeholder,
+    .text-area::placeholder {
+      color: #737373;
+    }
+
+    .text-input:focus,
+    .text-area:focus,
+    .date-input:focus {
+      outline: 2px solid #0f62fe;
+    }
+
+    .text-input.has-error {
+      outline: 2px solid #dc2626;
+    }
+
+    .error-text {
+      margin-top: 6px;
+      font-size: 13px;
+      color: #dc2626;
+    }
+
+    .text-area {
+      flex: 1;
+      width: 100%;
+      height: 212.283px;
+      padding: 12px;
+      border: none;
+      resize: vertical;
+      background-color: #d9d9d9;
+      font-family: 'Inter:Regular', 'Noto Sans KR:Regular', sans-serif;
+      font-size: 15px;
+      color: #000000;
+    }
+
+    .date-input {
+      width: 184.585px;
+      height: 36.969px;
+      padding: 0 12px;
+      border: none;
+      background-color: #d9d9d9;
+      font-family: 'Inter:Regular', 'Noto Sans KR:Regular', sans-serif;
+      font-size: 15px;
+      color: #000000;
+    }
+
+    .card-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 13px;
+      margin-top: 64px;
+    }
+
+    /* Detail View */
+    .detail-fields {
+      display: flex;
+      flex-direction: column;
+      gap: 36px;
+    }
+
+    .detail-title {
+      font-family: 'Inter:Bold', 'Noto Sans KR:Bold', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: #000000;
+    }
+
+    .detail-content {
+      flex: 1;
+      min-height: 160px;
+      padding: 16px;
+      background-color: #f4f4f4;
+      white-space: pre-wrap;
+      font-family: 'Inter:Regular', 'Noto Sans KR:Regular', sans-serif;
+      font-size: 15px;
+      line-height: 1.625;
+      color: #000000;
+    }
+
+    .detail-meta-group {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .detail-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 23px;
+    }
+
+    .detail-meta-label {
+      font-family: 'Inter:Bold', 'Noto Sans KR:Bold', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: #000000;
+    }
+
+    .detail-meta-value {
+      font-family: 'Inter:Regular', 'Noto Sans KR:Regular', sans-serif;
+      font-size: 15px;
+      font-variant-numeric: tabular-nums;
+      color: #000000;
+    }
+
+    /* Responsive Breakpoints */
+    @media (min-width: 640px) {
+      .page-container {
+        padding: 36px 32px 64px 28px;
+      }
+
+      .table-header,
+      .table-row-btn {
+        grid-template-columns: 80px minmax(0, 1fr) 140px 90px;
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+
+      .table-header-title {
+        padding-left: 24px;
+        text-align: left;
+      }
+
+      .table-header-date {
+        text-align: left;
+      }
+
+      .row-index {
+        padding-left: 16px;
+      }
+
+      .card-panel {
+        padding: 64px 49px 70px;
+      }
+
+      .form-fields {
+        gap: 76px;
+      }
+
+      .field-row-center {
+        flex-direction: row;
+        align-items: center;
+        gap: 30px;
+      }
+
+      .field-row-start {
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 30px;
+      }
+
+      .field-row-end {
+        flex-direction: row;
+        align-items: flex-end;
+        gap: 23px;
+      }
+
+      .card-actions-form {
+        margin-top: 96px;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .page-container {
+        padding: 36px 49px 64px 28px;
+      }
+    }
+  </style>
+  <script src="bbs.js" defer></script>
+  <script src="menu.js" defer></script>
+</head>
+<body>
+<div class="wrap">
+    <div class="aside"></div>
+      <div class="page-container">
+    <div class="search">
+      <p>
+        제목 <input type="text"  id="search"><button class="searchbtn">검색</button>
+      </p>
+    </div>
+    
+    <div class="top-bar">
+      <span id="status-message" class="status-message hidden" role="status"></span>
+      <button id="top-save-btn" type="button" class="btn-primary">저장</button>
+    </div>
+
+    <!-- Board table -->
+    <div class="board-table">
+      <div class="divider-line"></div>
+
+      <div class="table-header">
+        <div class="table-header-index">순번</div>
+        <div class="table-header-title">제목</div>
+        <div class="table-header-date">날짜</div>
+        <div class="table-header-views">조회수</div>
+      </div>
+
+      <div class="divider-line"></div>
+
+      <div id="table-body"></div>
+    </div>
+
+    <!-- Registration Card Modal -->
+    <section id="form-panel" class="card-panel" aria-label="게시글 등록">
+     
+        <div class="form-fields">
+          <div class="field-row field-row-center">
+            <label for="post-title" class="field-label">제목</label>
+            <div class="field-input-wrap">
+              <input
+                id="post-title"
+                type="text"
+                class="text-input"
+                placeholder="제목을 입력하세요"
+                aria-invalid="false"
+              />
+              <p id="title-error" class="error-text hidden">제목을 입력해 주세요.</p>
+            </div>
+          </div>
+
+          <div class="field-row field-row-start">
+            <label for="post-content" class="field-label">내용</label>
+            <textarea
+              id="post-content"
+              class="text-area"
+              placeholder="내용을 입력하세요"
+            ></textarea>
+          </div>
+
+          <div class="field-row field-row-end">
+            <label for="post-date" class="field-label field-label-date">등록일</label>
+            <input id="post-date" type="date" class="date-input" value="2026-11-19" />
+          </div>
+        </div>
+
+        <div class="card-actions card-actions-form">
+          <button class="btn-primary insert">등록</button>
+          <button class="close-form-btn1" type="button" class="btn-primary">닫기</button>
+        </div>
+      
+    </section>
+
+    <!-- Post Detail Card -->
+    <section id="detail-panel" class="card-panel hidden" aria-label="게시글 상세">
+      <div class="detail-fields">
+        <div class="field-row field-row-center">
+          <span class="field-label">제목</span>
+          <h2 id="detail-title" class="detail-title"></h2>
+        </div>
+
+        <div class="field-row field-row-start">
+          <span class="field-label">내용</span>
+          <div id="detail-content" class="detail-content"></div>
+        </div>
+
+        <div class="detail-meta-group">
+          <div class="detail-meta-item">
+            <span class="detail-meta-label">등록일</span>
+            <span id="detail-date" class="detail-meta-value"></span>
+          </div>
+          <div class="detail-meta-item">
+            <span class="detail-meta-label">조회수</span>
+            <span id="detail-views" class="detail-meta-value"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-actions">
+        <button id="delete-post-btn" type="button" class="btn-danger">삭제</button>
+        <button class="close-detail-btn2" type="button" class="btn-primary">닫기</button>
+      </div>
+    </section>
+      </div>
+
+</div>
+
+  
+</body>
+</html>
