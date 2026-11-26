@@ -1,10 +1,17 @@
 const loginForm = document.getElementById("login-form");
 const idInput = document.getElementById("admin-id");
 const passwordInput = document.getElementById("admin-password");
+const rememberIdInput = document.getElementById("remember-id");
 const feedbackEl = document.getElementById("login-feedback");
 
 const Adminid = "admin";
 const Passwd = "123456";
+const rememberedId = localStorage.getItem("rememberedAdminId");
+
+if (rememberedId) {
+  idInput.value = rememberedId;
+  rememberIdInput.checked = true;
+}
 
 const idFieldWrapper = idInput.closest(".input-field");
 const passwordFieldWrapper = passwordInput.closest(".input-field");
@@ -39,6 +46,14 @@ passwordInput.addEventListener("input", () => {
   if (!feedbackEl.hidden) hideFeedback();
 });
 
+rememberIdInput.addEventListener("change", () => {
+  if (!rememberIdInput.checked) {
+    localStorage.removeItem("rememberedAdminId");
+  } else if (idInput.value.trim()) {
+    localStorage.setItem("rememberedAdminId", idInput.value.trim());
+  }
+});
+
 loginForm.addEventListener("submit", (event) => {
   event.preventDefault();
   clearErrors();
@@ -51,6 +66,12 @@ loginForm.addEventListener("submit", (event) => {
     showFeedback("아이디를 입력해 주세요.", "error");
     idInput.focus();
     return;
+  }
+
+  if (rememberIdInput.checked) {
+    localStorage.setItem("rememberedAdminId", username);
+  } else {
+    localStorage.removeItem("rememberedAdminId");
   }
 
   if (!password) {

@@ -179,6 +179,27 @@ body {
   cursor: wait;
 }
 
+.idchk {
+  align-self: flex-start;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #ffffff;
+  font-size: 14px;
+}
+
+.idchk input {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  accent-color: #0088ff;
+  cursor: pointer;
+}
+
+.idchk label {
+  cursor: pointer;
+}
+
 .login-feedback {
   position: absolute;
   top: calc(100% + 16px);
