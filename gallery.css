@@ -1,0 +1,140 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  padding: 40px 0;
+  background: #f3f6fa;
+  color: #1d2939;
+  font-family: Arial, "Noto Sans KR", sans-serif;
+}
+
+.gallery-title {
+  width: min(800px, calc(100% - 32px));
+  margin: 0 auto 24px;
+  font-size: 28px;
+  text-align: center;
+}
+
+.wrap {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-rows: repeat(3, auto);
+  gap: 16px;
+  width: min(800px, calc(100% - 32px));
+  margin: 0 auto;
+}
+
+.gallery-card {
+  min-width: 0;
+  margin: 0;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 4px 14px rgb(29 41 57 / 10%);
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.gallery-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgb(29 41 57 / 16%);
+}
+
+.gallery-art {
+  aspect-ratio: 4 / 3;
+  background-color: #dbeafe;
+}
+
+.gallery-card figcaption {
+  padding: 12px 10px;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.gallery-art--garden {
+  background: radial-gradient(ellipse at 70% 70%, #8ecf79 0 20%, transparent 21%),
+    linear-gradient(160deg, #b9e8ff 0 48%, #5da86a 49% 70%, #31734e 71%);
+}
+
+.gallery-art--ocean {
+  background: radial-gradient(circle at 72% 25%, #fff1ad 0 8%, transparent 9%),
+    linear-gradient(175deg, #77d1ef 0 43%, #168bb1 44% 69%, #075b83 70%);
+}
+
+.gallery-art--sunset {
+  background: radial-gradient(circle at 50% 56%, #ffe9a8 0 12%, transparent 13%),
+    linear-gradient(180deg, #8b75bd, #f8a46e 58%, #614b70);
+}
+
+.gallery-art--mountain {
+  background: radial-gradient(circle at 73% 24%, #fff6cf 0 8%, transparent 9%),
+    linear-gradient(145deg, transparent 0 45%, #e8f2f2 46% 52%, #608d91 53% 70%, #294e5c 71%);
+}
+
+.gallery-art--flower {
+  background: radial-gradient(ellipse at 50% 62%, #ffd35c 0 8%, transparent 9%),
+    radial-gradient(ellipse at 50% 47%, #f47e9e 0 8%, transparent 9%),
+    radial-gradient(ellipse at 39% 57%, #f47e9e 0 8%, transparent 9%),
+    radial-gradient(ellipse at 61% 57%, #f47e9e 0 8%, transparent 9%),
+    linear-gradient(160deg, #c8edff, #78b97a);
+}
+
+.gallery-art--forest {
+  background: radial-gradient(ellipse at 50% 100%, #9cbe77 0 18%, transparent 19%),
+    linear-gradient(110deg, transparent 35%, #205844 36% 43%, transparent 44%),
+    linear-gradient(250deg, transparent 35%, #36765a 36% 45%, transparent 46%),
+    linear-gradient(180deg, #b8d9d2, #527e62);
+}
+
+.gallery-art--desert {
+  background: radial-gradient(circle at 72% 28%, #ffe9a0 0 9%, transparent 10%),
+    radial-gradient(ellipse at 25% 105%, #d77f4e 0 38%, transparent 39%),
+    linear-gradient(160deg, #f7c486 0 54%, #e5a564 55% 72%, #c76d49 73%);
+}
+
+.gallery-art--lake {
+  background: linear-gradient(180deg, #c0e8f5 0 42%, #647f93 43% 52%, #76b8c5 53% 72%, #39788b 73%);
+}
+
+.gallery-art--night {
+  background: radial-gradient(circle at 23% 28%, #fff7c2 0 2%, transparent 3%),
+    radial-gradient(circle at 71% 21%, #fff7c2 0 2%, transparent 3%),
+    radial-gradient(circle at 54% 39%, #fff7c2 0 2%, transparent 3%),
+    linear-gradient(160deg, #172b59, #4a5790 65%, #dd9b91);
+}
+
+.gallery-art--field {
+  background: radial-gradient(circle at 70% 25%, #fff3bd 0 9%, transparent 10%),
+    linear-gradient(170deg, #9dd5ed 0 52%, #a9c969 53% 68%, #668b45 69%);
+}
+
+.gallery-art--island {
+  background: radial-gradient(ellipse at 55% 68%, #2c9b9b 0 20%, transparent 21%),
+    radial-gradient(circle at 70% 25%, #fff1b1 0 9%, transparent 10%),
+    linear-gradient(180deg, #8ed8eb 0 52%, #32adc0 53% 100%);
+}
+
+.gallery-art--clouds {
+  background: radial-gradient(ellipse at 48% 47%, #ffffff 0 14%, transparent 15%),
+    radial-gradient(ellipse at 63% 45%, #ffffff 0 12%, transparent 13%),
+    radial-gradient(ellipse at 35% 50%, #ffffff 0 11%, transparent 12%),
+    linear-gradient(180deg, #63b6e2, #c5eafb);
+}
+
+@media (max-width: 600px) {
+  .wrap {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: auto;
+  }
+}
+
+@media (max-width: 360px) {
+  .wrap {
+    grid-template-columns: 1fr;
+  }
+}
